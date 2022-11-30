@@ -9,17 +9,27 @@ public class Document {
 	private int elementsSize;
 	
 	// Por enquanto é a impressão que eu tenho de elements
-	private ArrayList<String> elements = new ArrayList<>();
-	
-	public Document(String title) {
-		this.title = title;
-		this.elementsSize = -1;
-		this.elements = new ArrayList<>();
-	}
+	private ArrayList<Element> elements = new ArrayList<>();
 	
 	public Document(String title, int elementsSize) {
 		this.title = title;
 		this.elementsSize = elementsSize;
 		this.elements = new ArrayList<>();
+	}
+	
+	public int createElement(Element element) {
+		return 0;
+	}
+	
+	public void moveElementUp(int elementPosition) {
+		
+	}
+	
+	public void moveElementDown(int elementPosition) {
+		
+	}
+	
+	public boolean removeElement(int elementPosition) {
+		return true;
 	}
 }
