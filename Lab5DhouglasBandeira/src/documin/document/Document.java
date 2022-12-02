@@ -17,8 +17,17 @@ public class Document {
 		this.elements = new ArrayList<>();
 	}
 	
+	public int getCurrentElementsSize() {
+		return this.elements.size();
+	}
+	
+	public int getTotalElementsSize() {
+		return this.elementsSize;
+	}
+	
 	public int createElement(Element element) {
-		return 0;
+		this.elements.add(element);
+		return this.elements.size() - 1;
 	}
 	
 	public void moveElementUp(int elementPosition) {
@@ -30,6 +39,7 @@ public class Document {
 	}
 	
 	public boolean removeElement(int elementPosition) {
+		this.elements.remove(elementPosition);
 		return true;
 	}
 }

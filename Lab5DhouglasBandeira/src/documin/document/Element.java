@@ -2,9 +2,9 @@ package documin.document;
 
 public abstract class Element {
 
-	private int priority;
+	protected int priority;
 	
-	private String value;
+	protected String value;
 	
 	public Element(String value, int priority) {
 		this.value = value;

@@ -2,16 +2,30 @@ package documin.document;
 
 public class Title extends Element {
 	
+	private int level;
 	
-	public Title(String value, int priority) {
+	private boolean linkable;
+	
+	
+	public Title(String value, int priority, int level, boolean linkable) {
 		super(value, priority);
+		this.level = level;
+		this.linkable = linkable; 
 	}
 	
 	public String generateFullRepresentation() {
-		return null;
+		String representation = this.level + ". " + this.value;
+		if (this.linkable) {
+			representation += " -- " + this.getLink();
+		}
+		return representation;
 	}
 	
 	public String generateShortRepresentation() {
-		return null;
+		return this.level + ". " + this.value;
+	}
+	
+	public String getLink() {
+		return this.level + "-" + this.value.trim().toUpperCase();
 	}
 }

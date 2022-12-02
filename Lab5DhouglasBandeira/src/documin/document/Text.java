@@ -7,10 +7,10 @@ public class Text extends Element {
 	}
 	
 	public String generateFullRepresentation() {
-		return null;
+		return this.value;
 	}
 	
 	public String generateShortRepresentation() {
-		return null;
+		return this.value;
 	}
 }
