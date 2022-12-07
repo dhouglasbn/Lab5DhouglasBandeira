@@ -11,10 +11,21 @@ public class Document {
 	// Por enquanto é a impressão que eu tenho de elements
 	private ArrayList<Element> elements = new ArrayList<>();
 	
+	public Document(String title) {
+		if (title.trim().isEmpty()) throw new IllegalArgumentException("NÃO PODE SER VAZIO");
+		this.title = title;
+		this.elementsSize = -1;
+		this.elements = new ArrayList<>();
+	}
+	
 	public Document(String title, int elementsSize) {
 		this.title = title;
 		this.elementsSize = elementsSize;
 		this.elements = new ArrayList<>();
+	}
+	
+	public String getTitle() {
+		return this.title;
 	}
 	
 	public int getCurrentElementsSize() {
@@ -28,6 +39,10 @@ public class Document {
 	public int createElement(Element element) {
 		this.elements.add(element);
 		return this.elements.size() - 1;
+	}
+	
+	public int countElements() {
+		return this.elements.size();
 	}
 	
 	public void moveElementUp(int elementPosition) {
