@@ -25,7 +25,8 @@ public class Title extends Element {
 		return this.level + ". " + this.value;
 	}
 	
-	public String getLink() {
-		return this.level + "-" + this.value.trim().toUpperCase();
+	private String getLink() {
+		String shortTitle = String.join("", this.value.split(" ")).toUpperCase();
+		return this.level + "-" + shortTitle;
 	}
 }

@@ -18,18 +18,34 @@ class TitleTest {
 	void generateShortRepresentation() {
 		String msg = "Espera-se que a representação resumida seja igual ao esperado.";
 		
-		String expectedMessage = "Título de teste";
+		String expectedMessage = "1. Título de teste";
 		
-		assertEquals(expectedMessage, this.title.generateShortRepresentation());
+		String result = this.title.generateShortRepresentation();
+		
+		assertEquals(expectedMessage, result, msg);
 	}
 	
 	@Test
 	void generateFullLinkableRepresentation() {
 		String msg = "Espera-se que a representação completa de um título linkável seja igual ao esperado.";
 		
-		String expectedMessage = "Título de teste";
+		String expectedMessage = "1. Título de teste -- 1-TÍTULODETESTE";
 		
-		assertEquals(expectedMessage, this.title.generateShortRepresentation());
+		String result = this.title.generateFullRepresentation();
+		
+		assertEquals(expectedMessage, result, msg);
 	}
-
+	
+	@Test
+	void generateFullNotLinkableRepresentation() {
+		String msg = "Espera-se que a representação completa de um título linkável seja igual ao esperado.";
+		
+		String expectedMessage = "1. Título de teste";
+		
+		this.title = new Title("Título de teste", 1, 1, false);
+		
+		String result = this.title.generateFullRepresentation();
+		
+		assertEquals(expectedMessage, result, msg);
+	}
 }

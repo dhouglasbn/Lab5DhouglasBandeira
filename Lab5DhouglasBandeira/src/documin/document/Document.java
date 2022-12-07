@@ -12,13 +12,20 @@ public class Document {
 	private ArrayList<Element> elements = new ArrayList<>();
 	
 	public Document(String title) {
-		if (title.trim().isEmpty()) throw new IllegalArgumentException("NÃO PODE SER VAZIO");
+		if (title.trim().isEmpty()) {
+			throw new IllegalArgumentException("NÃO PODE SER VAZIO");
+		}
+		
 		this.title = title;
 		this.elementsSize = -1;
 		this.elements = new ArrayList<>();
 	}
 	
 	public Document(String title, int elementsSize) {
+		if (title.trim().isEmpty()) {
+			throw new IllegalArgumentException("NÃO PODE SER VAZIO");
+		}
+		
 		this.title = title;
 		this.elementsSize = elementsSize;
 		this.elements = new ArrayList<>();

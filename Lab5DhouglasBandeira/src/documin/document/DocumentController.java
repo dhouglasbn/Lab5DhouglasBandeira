@@ -13,27 +13,25 @@ public class DocumentController {
 	public boolean createDocument(String title) {
 		boolean result = false;
 		try {
-			if (this.documentAlreadyExists(title)) {
-				return result;
-			}
+			if (this.documentAlreadyExists(title)) return result;
 			Document document = new Document(title);
 			this.documentsMap.put(title, document);
-		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
 		}
 		return true;			
 	}
 	
 	public boolean createDocument(String title, int elementsSize) {
-		if (title.isBlank()) {
-			throw new IllegalArgumentException();
+		boolean result = false;
+		try {
+			if (this.documentAlreadyExists(title)) return result;
+			Document document = new Document(title, elementsSize);
+			this.documentsMap.put(title, document);
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
 		}
-		if (this.documentAlreadyExists(title)) {
-			return false;
-		}
-		Document document = new Document(title, elementsSize);
-		this.documentsMap.put(title, document);
-		return true;
+		return true;	
 	}
 	
 	public void deleteDocument(String title) {

@@ -1,5 +1,6 @@
 package documin.document;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -18,33 +19,53 @@ public class Words extends Element {
 	public String generateFullRepresentation() {
 		String[] words = this.getSortedWords();
 		String representation = "Total termos: " + words.length + "\n- ";
-		for (String word: words) {
-			representation += word + ", ";
+		for (int index = 0; index < words.length; index++) {
+			representation += words[index];
+			if (index != words.length - 1) {
+				representation += ", ";
+			}
 		}
 		representation += "\n";
 		return representation;
 	}
 	
 	public String generateShortRepresentation() {
-		return null;
+		String [] words = this.getSortedWords();
+		String representation = "";
+		for (int index = 0; index < words.length; index++) {
+			representation += words[index];
+			if (index != words.length - 1) {
+				representation += this.spacer;
+			}
+		}
+		representation += "\n";
+		return representation;
 	}
 	
 	private String[] getSortedWords() {
-		String[] words = this.value.split(this.spacer);
+		String[] words = this.getWordsArray();
 		
-		if (this.rank == "NENHUM") return words;	
 		for (int index = 0; index < words.length; index++) {
 			words[index] = words[index].toLowerCase();
 		}
 		
+		if (this.rank == "NENHUM") return words;	
 		if (this.rank == "ALFABÉTICA") Arrays.sort(words);
 		if (this.rank == "TAMANHO") {
-			Arrays.sort(words, Comparator.comparing(String::length));
-		}
-		
-		for (int index = 0; index < words.length; index++) {
-			words[index] = words[index].substring(0, 1).toUpperCase() + words[index].substring(1);
+			Arrays.sort(words, Comparator.comparing(String::length).reversed());
 		}
 		return words;
+	}
+	
+	private String[] getWordsArray() {
+		String[] array = this.value.split(this.spacer);
+		ArrayList<String> result = new ArrayList<>();
+		for (String item: array) {
+			if (!item.equals(this.spacer.trim())) {
+				result.add(item);
+			};
+		}
+		
+		return result.toArray(new String[] {});
 	}
 }
