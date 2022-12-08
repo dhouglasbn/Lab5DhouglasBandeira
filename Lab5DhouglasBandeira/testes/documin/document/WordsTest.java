@@ -17,7 +17,7 @@ class WordsTest {
 	@Test
 	void generateAlphabeticalShortRepresentation() {
 		String msg = "Espera-se que seja gerada uma representação "
-				+ "curta na ordem alfabética.";
+				+ "resumida na ordem alfabética.";
 		String expectedResult = "de / termos / teste\n";
 		
 		this.words = new Words(
@@ -52,7 +52,7 @@ class WordsTest {
 	@Test
 	void generateShortRepresentation() {
 		String msg = "Espera-se que seja gerada uma representação "
-				+ "curta na ordem de criação.";
+				+ "resumida na ordem de criação.";
 		String expectedResult = "termos / de / teste\n";
 		
 		this.words = new Words(
@@ -88,7 +88,7 @@ class WordsTest {
 	@Test
 	void generateLengthShortRepresentation() {
 		String msg = "Espera-se que seja gerada uma representação "
-				+ "curta na ordem alfabética.";
+				+ "resumida na ordem do tamanho da palavra.";
 		String expectedResult = "termos / teste / de\n";
 		
 		this.words = new Words(
@@ -105,7 +105,7 @@ class WordsTest {
 	@Test
 	void generateLengthFullRepresentation() {
 		String msg = "Espera-se que seja gerada uma representação "
-				+ "completa na ordem de criação.";
+				+ "completa na ordem do tamanho da palavra.";
 		String expectedResult = "Total termos: 4\n"
 				+ "- alemanha, bolivia, brasil, frança\n";
 		
