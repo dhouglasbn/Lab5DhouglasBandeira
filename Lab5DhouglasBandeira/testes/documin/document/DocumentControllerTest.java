@@ -790,41 +790,273 @@ class DocumentControllerTest {
 	
 	@Test
 	void moveFirstElementUp() {
+		String msg1 = "Espera-se que ao mover o primeiro elemento para cima, "
+				+ "o primeiro elemento continue no mesmo lugar.";
+		String msg2 = "Espera-se que ao mover o primeiro elemento para cima, "
+				+ "o segundo elemento continue no mesmo lugar.";
+		String docTitle = "Documento de teste";
+		int firstPosition = 0;
+		int lastPosition = 1;
 		
+		this.documentController.createDocument(docTitle);
+		Document document = this.documentController.getDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		Element element1 = document.getElement(firstPosition);
+		Element element2 = document.getElement(lastPosition);
+		
+		this.documentController.moveElementUp(docTitle, firstPosition);
+		
+		Element element3 = document.getElement(firstPosition);
+		Element element4 = document.getElement(lastPosition);
+		
+		assertTrue(element1.equals(element3), msg1);
+		assertTrue(element2.equals(element4), msg2);
 	}
 	
 	@Test
 	void moveLastElementUp() {
+		String msg1 = "Espera-se que ao mover o segundo elemento para cima, "
+				+ "o primeiro elemento troque a posição com o segundo elemento.";
+		String msg2 = "Espera-se que ao mover o segundo elemento para cima, "
+				+ "o segundo elemento troque a posição com o primeiro elemento.";
+		String docTitle = "Documento de teste";
+		int firstPosition = 0;
+		int lastPosition = 1;
 		
+		this.documentController.createDocument(docTitle);
+		Document document = this.documentController.getDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		Element element1 = document.getElement(firstPosition);
+		Element element2 = document.getElement(lastPosition);
+		
+		this.documentController.moveElementUp(docTitle, lastPosition);
+		
+		Element element3 = document.getElement(firstPosition);
+		Element element4 = document.getElement(lastPosition);
+		
+		assertTrue(element1.equals(element4), msg1);
+		assertTrue(element2.equals(element3), msg2);
 	}
 
 	@Test
 	void moveUnderFirstElementUp() {
+		String msg = "Espera-se que ao mover o elemento antecessor ao primeiro "
+				+ "elemento para cima, seja lançada a exceção"
+				+ " IndexOutOfBoundsException";
+		String docTitle = "Documento de teste";
 		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		assertThrows(
+				IndexOutOfBoundsException.class,
+				() -> this
+				.documentController.moveElementUp(docTitle, -1),
+				msg
+		);
 	}
 	
 	@Test
 	void moveOverLastElementUp() {
+		String msg = "Espera-se que ao mover o elemento sucessor ao segundo "
+				+ "elemento cima, seja lançada a exceção "
+				+ "IndexOutOfBoundsException";
+		String docTitle = "Documento de teste";
 		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		assertThrows(
+				IndexOutOfBoundsException.class,
+				() -> this
+				.documentController.moveElementUp(docTitle, 2),
+				msg
+		);
 	}
 	
 	@Test
 	void moveFirstElementDown() {
+		String msg1 = "Espera-se que ao mover o primeiro elemento para baixo, "
+				+ "o primeiro elemento troque a posição com o segundo elemento.";
+		String msg2 = "Espera-se que ao mover o primeiro elemento para baixo, "
+				+ "o segundo elemento troque a posição com o primeiro elemento.";
+		String docTitle = "Documento de teste";
+		int firstPosition = 0;
+		int lastPosition = 1;
 		
+		this.documentController.createDocument(docTitle);
+		Document document = this.documentController.getDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		Element element1 = document.getElement(firstPosition);
+		Element element2 = document.getElement(lastPosition);
+		
+		this.documentController.moveElementDown(docTitle, firstPosition);
+		
+		Element element3 = document.getElement(firstPosition);
+		Element element4 = document.getElement(lastPosition);
+		
+		assertTrue(element1.equals(element4), msg1);
+		assertTrue(element2.equals(element3), msg2);
 	}
 	
 	@Test
 	void moveLastElementDown() {
+		String msg1 = "Espera-se que ao mover o segundo elemento para baixo, "
+				+ "o primeiro elemento continue na mesma posição.";
+		String msg2 = "Espera-se que ao mover o segundo elemento para cima, "
+				+ "o segundo elemento continue na mesma posição.";
+		String docTitle = "Documento de teste";
+		int firstPosition = 0;
+		int lastPosition = 1;
 		
+		this.documentController.createDocument(docTitle);
+		Document document = this.documentController.getDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		Element element1 = document.getElement(firstPosition);
+		Element element2 = document.getElement(lastPosition);
+		
+		this.documentController.moveElementDown(docTitle, lastPosition);
+		
+		Element element3 = document.getElement(firstPosition);
+		Element element4 = document.getElement(lastPosition);
+		
+		assertTrue(element1.equals(element3), msg1);
+		assertTrue(element2.equals(element4), msg2);
 	}
 	
 	@Test
 	void moveUnderFirstElementDown() {
+		String msg = "Espera-se que ao mover o elemento antecessor ao primeiro "
+				+ "elemento para baixo, seja lançada a exceção"
+				+ " IndexOutOfBoundsException";
+		String docTitle = "Documento de teste";
 		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		assertThrows(
+				IndexOutOfBoundsException.class,
+				() -> this
+				.documentController.moveElementDown(docTitle, -1),
+				msg
+		);
 	}
 	
 	@Test
 	void moveOverLastElementDown() {
+		String msg = "Espera-se que ao mover o elemento sucessor ao segundo "
+				+ "elemento para baixo, seja lançada a exceção "
+				+ "IndexOutOfBoundsException";
+		String docTitle = "Documento de teste";
 		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(
+				docTitle,
+				"Texto de teste",
+				1
+		);
+		
+		assertThrows(
+				IndexOutOfBoundsException.class,
+				() -> this
+				.documentController.moveElementDown(docTitle, 2),
+				msg
+		);
 	}
 }

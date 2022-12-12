@@ -69,7 +69,7 @@ public class Facade {
     	String[] documentElements = new String[0];
     	
     	try {
-			documentElements = this.documentController.getElements(title);
+    		documentElements = this.documentController.showDocument(title);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
 		}

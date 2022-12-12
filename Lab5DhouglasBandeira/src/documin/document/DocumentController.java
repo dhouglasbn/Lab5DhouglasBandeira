@@ -138,7 +138,7 @@ public class DocumentController {
 	}
 	
 	// Falta testar
-	public String[] getElements(String title) {
+	public String[] showDocument(String title) {
 		Document document = this.getDocument(title);
 		
 		return document.showDocument();
