@@ -444,6 +444,24 @@ class DocumentControllerTest {
 	}
 	
 	@Test
+	void createWrongRankWordsTest() {
+		String msg = "Espera-se que termos com ordenação diferente do esperado"
+				+ " lance a exceção IllegalArgumentException.";
+		
+		String docTitle = "Documento de Teste";
+		
+		this.documentController.createDocument(docTitle);
+		
+		assertThrows(
+				IllegalArgumentException.class,
+				() -> this
+				.documentController
+				.createWords(docTitle, "termos / de / teste", 1, " / ", "INVERSO"),
+				msg
+				);
+	}
+	
+	@Test
 	void createWordsPriority0Test() {
 		String msg = "Espera-se que termos com prioridade 0 não seja"
 				+ " criado, lançando a exceção IndexOutOfBoundsException.";
@@ -671,5 +689,142 @@ class DocumentControllerTest {
 				.getShortRepresentation(docTitle, docSize),
 				msg
 				);
+	}
+	
+	@Test
+	void removeFirstElementTest() {
+		String msg = "Espera-se que o primeiro elemento do documento seja removido "
+				+ "com sucesso.";
+		String docTitle = "Documento de teste";
+		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(docTitle, "Texto de teste", 1);
+		
+		boolean result = this.documentController.removeElement(docTitle, 0);
+		
+		assertTrue(result, msg);
+	}
+	
+	@Test
+	void removeLastElementTest() {
+		String msg = "Espera-se que o último elemento do documento seja removido "
+				+ "com sucesso.";
+		String docTitle = "Documento de teste";
+		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(docTitle, "Texto de teste", 1);
+		
+		boolean result = this.documentController.removeElement(docTitle, 1);
+		
+		assertTrue(result, msg);
+	}
+	
+	@Test
+	void removeUnderFirstElementTest() {
+		String msg = "Espera-se que o elemento antes do primeiro elemento"
+				+ " do documento seja removido com sucesso.";
+		String docTitle = "Documento de teste";
+		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(docTitle, "Texto de teste", 1);
+		
+		assertThrows(
+				IndexOutOfBoundsException.class
+				,
+				() -> this
+				.documentController
+				.removeElement(docTitle, -1),
+				msg
+		);
+	}
+	
+	@Test
+	void removeOverLasElementTest() {
+		String msg = "Espera-se que o elemento após o último elemento do "
+				+ "documento seja removido com sucesso.";
+		String docTitle = "Documento de teste";
+		
+		this.documentController.createDocument(docTitle);
+		
+		this.documentController.createTitle(
+				docTitle,
+				"Título de teste",
+				1,
+				1,
+				false
+		);
+		this.documentController.createText(docTitle, "Texto de teste", 1);
+		
+		assertThrows(
+				IndexOutOfBoundsException.class,
+				() -> this
+				.documentController
+				.removeElement(docTitle, 2),
+				msg
+		);
+	}
+	
+	@Test
+	void moveFirstElementUp() {
+		
+	}
+	
+	@Test
+	void moveLastElementUp() {
+		
+	}
+
+	@Test
+	void moveUnderFirstElementUp() {
+		
+	}
+	
+	@Test
+	void moveOverLastElementUp() {
+		
+	}
+	
+	@Test
+	void moveFirstElementDown() {
+		
+	}
+	
+	@Test
+	void moveLastElementDown() {
+		
+	}
+	
+	@Test
+	void moveUnderFirstElementDown() {
+		
+	}
+	
+	@Test
+	void moveOverLastElementDown() {
+		
 	}
 }

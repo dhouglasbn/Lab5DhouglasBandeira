@@ -167,7 +167,7 @@ public class DocumentController {
 	public boolean removeElement(String docTitle, int elementPosition) {
 		Document document = this.getDocument(docTitle);
 		
-		if (document.isIndexInElementsRange(elementPosition)) {
+		if (!document.isIndexInElementsRange(elementPosition)) {
 			throw new IndexOutOfBoundsException("ELEMENTO INEXISTENTE");
 		}
 		
@@ -177,7 +177,7 @@ public class DocumentController {
 	public void moveElementUp(String docTitle, int elementPosition) {
 		Document document = this.getDocument(docTitle);
 		
-		if (document.isIndexInElementsRange(elementPosition)) {
+		if (!document.isIndexInElementsRange(elementPosition)) {
 			throw new IndexOutOfBoundsException("ELEMENTO INEXISTENTE");
 		}
 		
@@ -187,7 +187,7 @@ public class DocumentController {
 	public void moveElementDown(String docTitle, int elementPosition) {
 		Document document = this.getDocument(docTitle);
 		
-		if (document.isIndexInElementsRange(elementPosition)) {
+		if (!document.isIndexInElementsRange(elementPosition)) {
 			throw new IndexOutOfBoundsException("ELEMENTO INEXISTENTE");
 		}
 		
