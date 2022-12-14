@@ -143,12 +143,12 @@ String msg = "Espera-se que o documento não seja um atalho (false).";
 		
 		Element element1 = this.document.getElement(0);
 		Element element2 = this.document.getElement(1);
-		int elementAmount = this.document.countElements();
+		int elementsAmount = this.document.countElements();
 
 		assertTrue(result, msg1);
 		assertEquals(title, element1, msg2);
 		assertEquals(words, element2, msg3);
-		assertEquals(expectedValue, this.document.countElements(), msg4);
+		assertEquals(expectedValue, elementsAmount, msg4);
 	}
 	
 //	@Test
