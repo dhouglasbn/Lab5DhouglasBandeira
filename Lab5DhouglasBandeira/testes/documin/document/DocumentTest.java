@@ -28,6 +28,24 @@ class DocumentTest {
 		assertEquals(0, position1, msg1);
 		assertEquals(1, position2, msg2);
 	}
+	
+	@Test
+	void setIsShortcutTrue() {
+		String msg = "Espera-se que o documento seja um atalho (true).";
+		
+		this.document.setShortcut(true);
+		
+		assertTrue(this.document.isShortcut(), msg);
+	}
+	
+	@Test
+	void setIsShortcutFalse() {
+String msg = "Espera-se que o documento não seja um atalho (false).";
+		
+		this.document.setShortcut(false);
+		
+		assertFalse(this.document.isShortcut(), msg);
+	}
 
 	@Test
 	void moveSecondElementUpTest() {
@@ -52,11 +70,13 @@ class DocumentTest {
 	@Test
 	void moveFirstElementUpTest() {
 		String msg1 = "Espera-se que ao mover o elemento da posição 0, "
-				+ "ele continue na posição 0.";
+				+ "para cima ele continue na posição 0.";
 		
 		Title title = new Title("teste", 1, 3, false);
+		Text text = new Text("testeeee", 1);
 		
 		this.document.createElement(title);
+		this.document.createElement(text);
 		
 		this.document.moveElementUp(0);
 		
@@ -108,6 +128,8 @@ class DocumentTest {
 		String msg1 = "Espera-se que o elemento seja removido com sucesso.";
 		String msg2 = "Espera-se que o elemento na posição 1 seja o título.";
 		String msg3 = "Espera-se que o elemento na posição 2 seja os termos.";
+		String msg4 = "Espera-se que após a remoção o documento possua 2 elementos.";
+		int expectedValue = 2;
 		
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
@@ -121,10 +143,12 @@ class DocumentTest {
 		
 		Element element1 = this.document.getElement(0);
 		Element element2 = this.document.getElement(1);
+		int elementAmount = this.document.countElements();
 
 		assertTrue(result, msg1);
 		assertEquals(title, element1, msg2);
 		assertEquals(words, element2, msg3);
+		assertEquals(expectedValue, this.document.countElements(), msg4);
 	}
 	
 //	@Test

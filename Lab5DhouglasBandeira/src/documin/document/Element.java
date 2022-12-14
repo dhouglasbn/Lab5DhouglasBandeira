@@ -11,6 +11,14 @@ public abstract class Element {
 		this.priority = priority;
 	}
 	
+	public String getValue() {
+		return this.value;
+	}
+	
+	public int getPriority() {
+		return this.priority;
+	}
+	
 	public abstract String generateFullRepresentation();
 	
 	public abstract String generateShortRepresentation();

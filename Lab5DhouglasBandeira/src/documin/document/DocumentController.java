@@ -8,7 +8,7 @@ public class DocumentController {
 	private HashMap<String, Document> documentsMap;
 	
 	public DocumentController() {
-		this.documentsMap = new HashMap<>();
+		this.documentsMap = new HashMap<String, Document>();
 	}
 	
 	public boolean createDocument(String title) {
@@ -131,6 +131,22 @@ public class DocumentController {
 		return document.createElement(words);
 	}
 	
+	public int createShortcut(String docTitle, String referencedDocTitle) {
+		Document document = this.getDocument(docTitle);
+		Document referencedDocument = this.getDocument(referencedDocTitle);
+		
+		if (document.isShortcut()) {
+			throw new IllegalStateException("ATALHO NÃO PODE TER ATALHO!");
+		}
+		if (this.documentHasShortcuts(referencedDocTitle)) {
+			throw new IllegalStateException("DOCUMENTO QUE TEM ATALHOS NÂO PODE SER ATALHO!");
+		}
+		
+		Shortcut shortcut = new Shortcut(referencedDocument.getTitle(), 0);
+		referencedDocument.setShortcut(true);
+		return document.createElement(shortcut);
+	}
+	
 	public int getElementsNumber(String title) {
 		Document document = this.getDocument(title);
 		
@@ -210,5 +226,19 @@ public class DocumentController {
 			return false;
 		}
 		return true;
+	}
+	
+	private boolean documentHasShortcuts(String docTitle) {
+		Document document = this.getDocument(docTitle);
+		boolean hasShortcut = false;
+		
+		for (int index = 0; index < document.countElements(); index++) {
+			Element element = document.getElement(index);
+			if (element instanceof Shortcut) {
+				hasShortcut = true;
+				break;
+			}
+		}
+		return hasShortcut;
 	}
 }

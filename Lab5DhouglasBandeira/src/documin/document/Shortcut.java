@@ -2,40 +2,29 @@ package documin.document;
 
 import java.util.ArrayList;
 
-public class Document implements DocumentInterface {
+// para testar
+public class Shortcut extends Element implements DocumentInterface {
 
-	private String title;
-	
 	private int elementsSize;
 	
 	private ArrayList<Element> elements = new ArrayList<>();
 	
-	private boolean isShortcut;
-	
-	public Document(String title) {
-		this.title = title;
+	public Shortcut(String value) {
+		super(value, 0);
+		this.priority = this.getPriorityAverage();
 		this.elementsSize = -1;
 		this.elements = new ArrayList<Element>();
-		this.isShortcut = false;
 	}
 	
-	public Document(String title, int elementsSize) {
-		this.title = title;
+	public Shortcut(String value, int elementsSize) {
+		super(value, 0);
+		this.priority = this.getPriorityAverage();
 		this.elementsSize = elementsSize;
 		this.elements = new ArrayList<Element>();
-		this.isShortcut = false;
 	}
 	
 	public String getTitle() {
-		return this.title;
-	}
-	
-	public boolean isShortcut() {
-		return this.isShortcut;
-	}
-	
-	public void setShortcut(boolean value) {
-		this.isShortcut = value;
+		return this.value;
 	}
 	
 	public int getTotalElementsSize() {
@@ -48,6 +37,7 @@ public class Document implements DocumentInterface {
 	
 	public int createElement(Element element) {
 		this.elements.add(element);
+		this.setPriority();
 		return this.elements.indexOf(element);
 	}
 	
@@ -77,13 +67,7 @@ public class Document implements DocumentInterface {
 	
 	public boolean removeElement(int position) {
 		this.elements.remove(position);
-		return true;
-	}
-	
-	public boolean isIndexInElementsRange(int index) {
-		if (index < 0 || index >= this.countElements()) {
-			return false;
-		}
+		this.setPriority();
 		return true;
 	}
 	
@@ -97,5 +81,33 @@ public class Document implements DocumentInterface {
 					.generateShortRepresentation();
 		}
 		return representations;
+	}
+	
+	public boolean isIndexInElementsRange(int index) {
+		if (index < 0 || index >= this.countElements()) {
+			return false;
+		}
+		return true;
+	}
+	
+	public String generateFullRepresentation() {
+		return "";
+	}
+	
+	public String generateShortRepresentation() {
+		return "";
+	}
+	
+	public void setPriority() {
+		this.priority = this.getPriorityAverage();
+	}
+	
+	private int getPriorityAverage() {
+		int amount = 0;
+		for (int index = 0; index < this.countElements(); index++) {
+			amount += this.getElement(index).getPriority();
+		}
+		
+		return amount / this.countElements();
 	}
 }
