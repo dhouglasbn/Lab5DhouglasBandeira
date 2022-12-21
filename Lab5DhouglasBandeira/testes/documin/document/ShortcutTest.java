@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DocumentTest {
-	
-	private Document document;
+class ShortcutTest {
 
+	private Shortcut shortcut;
+	
 	@BeforeEach
 	void setUp() throws Exception {
-		this.document = new Document("Documento de teste");
+		this.shortcut = new Shortcut("atalho de exemplo");
 	}
-	
+
 	@Test
 	void createElementTest() {
 		String msg1 = "Espera-se que um elemento seja criado na posição 0";
@@ -22,29 +22,11 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		int position1 = this.document.createElement(title);
-		int position2 = this.document.createElement(text);
+		int position1 = this.shortcut.createElement(title);
+		int position2 = this.shortcut.createElement(text);
 		
 		assertEquals(0, position1, msg1);
 		assertEquals(1, position2, msg2);
-	}
-	
-	@Test
-	void setIsShortcutTrue() {
-		String msg = "Espera-se que o documento seja um atalho (true).";
-		
-		this.document.setIsShortcut(true);
-		
-		assertTrue(this.document.isShortcut(), msg);
-	}
-	
-	@Test
-	void setIsShortcutFalse() {
-		String msg = "Espera-se que o documento não seja um atalho (false).";
-		
-		this.document.setIsShortcut(false);
-		
-		assertFalse(this.document.isShortcut(), msg);
 	}
 
 	@Test
@@ -55,13 +37,13 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		this.document.moveElementUp(1);
+		this.shortcut.moveElementUp(1);
 		
-		Element element1 = this.document.getElement(0);
-		Element element2 = this.document.getElement(1);
+		Element element1 = this.shortcut.getElement(0);
+		Element element2 = this.shortcut.getElement(1);
 		
 		assertEquals(text, element1, msg1);
 		assertEquals(title, element2, msg2);
@@ -75,12 +57,12 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		this.document.moveElementUp(0);
+		this.shortcut.moveElementUp(0);
 		
-		Element element1 = this.document.getElement(0);
+		Element element1 = this.shortcut.getElement(0);
 		
 		assertEquals(title, element1, msg1);
 	}
@@ -93,13 +75,13 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		this.document.moveElementDown(0);
+		this.shortcut.moveElementDown(0);
 		
-		Element element1 = this.document.getElement(0);
-		Element element2 = this.document.getElement(1);
+		Element element1 = this.shortcut.getElement(0);
+		Element element2 = this.shortcut.getElement(1);
 		
 		assertEquals(text, element1, msg1);
 		assertEquals(title, element2, msg2);
@@ -112,13 +94,13 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		this.document.moveElementDown(1);
+		this.shortcut.moveElementDown(1);
 		
-		this.document.getElement(0);
-		Element element2 = this.document.getElement(1);
+		this.shortcut.getElement(0);
+		Element element2 = this.shortcut.getElement(1);
 
 		assertEquals(text, element2, msg);
 	}
@@ -135,15 +117,15 @@ class DocumentTest {
 		Text text = new Text("testeeee", 1);
 		Words words = new Words("palavras / de / teste", 1, " / ", "NENHUM");
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
-		this.document.createElement(words);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
+		this.shortcut.createElement(words);
 		
-		boolean result = this.document.removeElement(1);
+		boolean result = this.shortcut.removeElement(1);
 		
-		Element element1 = this.document.getElement(0);
-		Element element2 = this.document.getElement(1);
-		int elementsAmount = this.document.countElements();
+		Element element1 = this.shortcut.getElement(0);
+		Element element2 = this.shortcut.getElement(1);
+		int elementsAmount = this.shortcut.countElements();
 
 		assertTrue(result, msg1);
 		assertEquals(title, element1, msg2);
@@ -154,16 +136,16 @@ class DocumentTest {
 	@Test
 	void showDocumentTest() {
 		String msg = "Espera-se que seja retornada as representações"
-				+ " curtas dos elementos do documento.";
+				+ " curtas dos elementos do atalho.";
 		String expectedFirstValue = "lista, de, exemplo\n";
 		String expectedSecondValue = "termos / de / exemplo\n";
 		
 		ListElement list = new ListElement("lista | de | exemplo", 1, " | ", "-");
 		Words words = new Words("termos / de / exemplo", 1, " / ", "NENHUM");
-		this.document.createElement(list);
-		this.document.createElement(words);
+		this.shortcut.createElement(list);
+		this.shortcut.createElement(words);
 		
-		String[] result = this.document.showDocument();
+		String[] result = this.shortcut.showDocument();
 		
 		assertEquals(expectedFirstValue, result[0], msg);
 		assertEquals(expectedSecondValue, result[1], msg);
@@ -176,10 +158,10 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		boolean result = this.document.isIndexInElementsRange(0);
+		boolean result = this.shortcut.isIndexInElementsRange(0);
 		
 		assertTrue(result, msg);
 	}
@@ -192,10 +174,10 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		boolean result = this.document.isIndexInElementsRange(-1);
+		boolean result = this.shortcut.isIndexInElementsRange(-1);
 		
 		assertFalse(result, msg);
 	}
@@ -208,12 +190,12 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		int elementsNumber = this.document.countElements();
+		int elementsNumber = this.shortcut.countElements();
 		
-		boolean result = this.document.isIndexInElementsRange(elementsNumber);
+		boolean result = this.shortcut.isIndexInElementsRange(elementsNumber);
 		
 		assertFalse(result, msg);
 	}
@@ -226,12 +208,12 @@ class DocumentTest {
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		this.document.createElement(title);
-		this.document.createElement(text);
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
 		
-		int elementsNumber = this.document.countElements();
+		int elementsNumber = this.shortcut.countElements();
 		
-		boolean result = this.document.isIndexInElementsRange(elementsNumber - 1);
+		boolean result = this.shortcut.isIndexInElementsRange(elementsNumber - 1);
 		
 		assertTrue(result, msg);
 	}
@@ -239,19 +221,19 @@ class DocumentTest {
 	@Test
 	void isDocumentFull() {
 		String msg = "Espera-se que com a mesma quantidade de elementos registrados "
-				+ "que a quantidade total de elementos, o documento esteja cheio";
+				+ "que a quantidade total de elementos, o atalho esteja cheio";
 		
-		Document newDocument = new Document("teste", 3);
+		Shortcut newShortcut = new Shortcut("teste", 3);
 		
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		Words words = new Words("termos / de / exemplo", 1, " / ", "NENHUM");
 		
-		newDocument.createElement(title);
-		newDocument.createElement(text);
-		newDocument.createElement(words);
+		newShortcut.createElement(title);
+		newShortcut.createElement(text);
+		newShortcut.createElement(words);
 		
-		boolean result = newDocument.isFull();
+		boolean result = newShortcut.isFull();
 		
 		assertTrue(result, msg);
 	}
@@ -261,16 +243,43 @@ class DocumentTest {
 		String msg = "Espera-se que com a quantidade de elementos registrados "
 				+ "menor que a quantidade total de elementos, o documento esteja cheio";
 		
-		Document newDocument = new Document("teste", 3);
+		Shortcut newShortcut = new Shortcut("teste", 3);
 		
 		Title title = new Title("teste", 1, 3, false);
 		Text text = new Text("testeeee", 1);
 		
-		newDocument.createElement(title);
-		newDocument.createElement(text);
+		newShortcut.createElement(title);
+		newShortcut.createElement(text);
 		
-		boolean result = newDocument.isFull();
+		boolean result = newShortcut.isFull();
 		
 		assertFalse(result, msg);
 	}
+
+//	@Test
+//	void generateFullRepresentation() {
+//		String msg = "Espera-se que seja retornado a representação dos elementos acima de"
+//				+ " prioridade 4 do atalho.";
+//		String expectedFirstValue = "1. teste\n";
+//		String expectedSecondValue = "termos / de / exemplo\n";
+//		
+//		Shortcut newShortcut = new Shortcut("teste", 3);
+//		
+//		Title title = new Title("teste", 4, 3, false);
+//		Text text = new Text("testeeee", 1);
+//		Words words = new Words("termos / de / exemplo", 4, " / ", "NENHUM");
+//		
+//		newShortcut.createElement(title);
+//		newShortcut.createElement(text);
+//		newShortcut.createElement(words);
+//		
+//		String result = this.shortcut.generateFullRepresentation();
+//		
+//		assertTrue(result, msg);
+//	}
+//	
+//	@Test
+//	void generateShortRepresentation() {
+//		
+//	}
 }

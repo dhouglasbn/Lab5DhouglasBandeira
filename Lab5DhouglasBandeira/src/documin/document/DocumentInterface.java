@@ -20,4 +20,6 @@ public interface DocumentInterface {
 	public String[] showDocument();
 	
 	public boolean isIndexInElementsRange(int index);
+	
+	public boolean isFull();
 }

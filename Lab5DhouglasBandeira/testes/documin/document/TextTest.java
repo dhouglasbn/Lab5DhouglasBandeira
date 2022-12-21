@@ -18,7 +18,7 @@ class TextTest {
 	void getFullRepresentation() {
 		String msg = "Espera-se que a representação completa seja igual ao valor esperado.";
 		
-		String expectedValue = "Texto teste.";
+		String expectedValue = "Texto teste.\n";
 		
 		assertEquals(expectedValue, this.text.generateFullRepresentation(), msg);
 	}
@@ -27,7 +27,7 @@ class TextTest {
 	void getShortRepresentation() {
 		String msg = "Espera-se que a representação resumida seja igual ao valor esperado.";
 		
-		String expectedValue = "Texto teste.";
+		String expectedValue = "Texto teste.\n";
 		
 		assertEquals(expectedValue, this.text.generateShortRepresentation(), msg);
 	}

@@ -18,11 +18,12 @@ public class Title extends Element {
 		if (this.linkable) {
 			representation += " -- " + this.getLink();
 		}
+		representation += "\n";
 		return representation;
 	}
 	
 	public String generateShortRepresentation() {
-		return this.level + ". " + this.value;
+		return this.level + ". " + this.value + "\n";
 	}
 	
 	private String getLink() {

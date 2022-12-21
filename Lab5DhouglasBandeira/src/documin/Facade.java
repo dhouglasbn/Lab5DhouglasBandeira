@@ -1,6 +1,7 @@
 package documin;
 
 import documin.document.DocumentController;
+import documin.document.ElementController;
 
 /** IMPORTANTE **
  * DocumentController ta cheio de responsabilidades
@@ -20,9 +21,12 @@ import documin.document.DocumentController;
 public class Facade {
 
     private DocumentController documentController;
+    
+    private ElementController elementController;
 
     public Facade() {
          this.documentController = new DocumentController();
+         this.elementController = new ElementController(documentController);
     }
 
     public boolean createDocument(String title) {
@@ -58,7 +62,7 @@ public class Facade {
     public int countElements(String titulo) {
     	int elementsNumber = 0;
     	try {
-			elementsNumber = this.documentController.getElementsNumber(titulo);
+			elementsNumber = this.elementController.getElementsNumber(titulo);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
 		}
@@ -81,7 +85,7 @@ public class Facade {
     	int index = -1;
     	  
     	try {
-			index = this.documentController.createText(docTitle, value, priority);
+			index = this.elementController.createText(docTitle, value, priority);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
 		}
@@ -98,7 +102,7 @@ public class Facade {
     	int index = -1;
     	  
     	try {
-			index = this.documentController.createTitle(
+			index = this.elementController.createTitle(
 					docTitle,
 					value,
 					priority,
@@ -121,7 +125,7 @@ public class Facade {
     	  int index = -1;
     	  
     	  try {
-			index = this.documentController.createList(
+			index = this.elementController.createList(
 					docTitle,
 					listValue,
 					priority,
@@ -144,7 +148,7 @@ public class Facade {
   	  int index = -1;
 	  
   	  try {
-			index = this.documentController.createWords(
+			index = this.elementController.createWords(
 					docTitle,
 					wordsValue,
 					priority,
@@ -162,7 +166,7 @@ public class Facade {
 	  
   	  try {
 			representation = this
-					.documentController
+					.elementController
 					.getFullRepresentation(docTitle, elementPosition);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
@@ -175,7 +179,7 @@ public class Facade {
     	  
       	  try {
     			representation = this
-    					.documentController
+    					.elementController
     					.getShortRepresentation(docTitle, elementPosition);
     		} catch (Exception exception) {
     			System.out.println(exception.getMessage());
@@ -188,7 +192,7 @@ public class Facade {
     	  
       	  try {
     			result = this
-    					.documentController
+    					.elementController
     					.removeElement(docTitle, elementPosition);
     		} catch (Exception exception) {
     			System.out.println(exception.getMessage());
@@ -199,7 +203,7 @@ public class Facade {
     public void moveElementUp(String docTitle, int elementPosition) {
     	try {
     		this
-    			.documentController
+    			.elementController
     			.moveElementUp(docTitle, elementPosition);
     		} catch (Exception exception) {
     			System.out.println(exception.getMessage());
@@ -209,7 +213,7 @@ public class Facade {
     public void moveElementDown(String tituloDoc, int elementoPosicao) {
     	try {
     		this
-    			.documentController
+    			.elementController
     			.moveElementDown(tituloDoc, elementoPosicao);
     		} catch (Exception exception) {
     			System.out.println(exception.getMessage());

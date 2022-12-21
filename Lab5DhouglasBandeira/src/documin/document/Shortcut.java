@@ -31,6 +31,10 @@ public class Shortcut extends Element implements DocumentInterface {
 		return this.elementsSize;
 	}
 	
+	public boolean isFull() {
+		return this.countElements() == this.elementsSize;
+	}
+	
 	public Element getElement(int position) {
 		return this.elements.get(position);
 	}
@@ -91,19 +95,38 @@ public class Shortcut extends Element implements DocumentInterface {
 	}
 	
 	public String generateFullRepresentation() {
-		return "";
+		String result = "";
+		
+		for (Element element: this.elements) {
+			if (element.getPriority() == 4 || element.getPriority() == 5) {				
+				result += element.generateFullRepresentation();
+			}
+		}
+		return result;
 	}
 	
 	public String generateShortRepresentation() {
-		return "";
+		String result = "";
+		
+		for (Element element: this.elements) {
+			if (element.getPriority() == 4 || element.getPriority() == 5) {				
+				result += element.generateShortRepresentation();
+			}
+		}
+		return result;
 	}
 	
-	public void setPriority() {
+	private void setPriority() {
 		this.priority = this.getPriorityAverage();
 	}
 	
 	private int getPriorityAverage() {
 		int amount = 0;
+		int elements = this.countElements();
+		
+		if (elements == 0) {
+			return 0;
+		}
 		for (int index = 0; index < this.countElements(); index++) {
 			amount += this.getElement(index).getPriority();
 		}

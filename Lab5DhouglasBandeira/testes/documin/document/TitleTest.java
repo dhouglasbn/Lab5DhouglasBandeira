@@ -18,7 +18,7 @@ class TitleTest {
 	void generateShortRepresentation() {
 		String msg = "Espera-se que a representação resumida seja igual ao esperado.";
 		
-		String expectedMessage = "1. Título de teste";
+		String expectedMessage = "1. Título de teste\n";
 		
 		String result = this.title.generateShortRepresentation();
 		
@@ -29,7 +29,7 @@ class TitleTest {
 	void generateFullLinkableRepresentation() {
 		String msg = "Espera-se que a representação completa de um título linkável seja igual ao esperado.";
 		
-		String expectedMessage = "1. Título de teste -- 1-TÍTULODETESTE";
+		String expectedMessage = "1. Título de teste -- 1-TÍTULODETESTE\n";
 		
 		String result = this.title.generateFullRepresentation();
 		
@@ -40,7 +40,7 @@ class TitleTest {
 	void generateFullNotLinkableRepresentation() {
 		String msg = "Espera-se que a representação completa de um título linkável seja igual ao esperado.";
 		
-		String expectedMessage = "1. Título de teste";
+		String expectedMessage = "1. Título de teste\n";
 		
 		this.title = new Title("Título de teste", 1, 1, false);
 		

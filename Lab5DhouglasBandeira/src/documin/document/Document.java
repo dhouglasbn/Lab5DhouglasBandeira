@@ -34,7 +34,7 @@ public class Document implements DocumentInterface {
 		return this.isShortcut;
 	}
 	
-	public void setShortcut(boolean value) {
+	public void setIsShortcut(boolean value) {
 		this.isShortcut = value;
 	}
 	
@@ -49,6 +49,10 @@ public class Document implements DocumentInterface {
 	public int createElement(Element element) {
 		this.elements.add(element);
 		return this.elements.indexOf(element);
+	}
+	
+	public boolean isFull() {
+		return this.countElements() == this.elementsSize;
 	}
 	
 	public int countElements() {
