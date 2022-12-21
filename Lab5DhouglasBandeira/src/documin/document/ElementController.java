@@ -97,9 +97,9 @@ public class ElementController {
 		return document.createElement(words);
 	}
 	
-	public int createShortcut(String docTitle, String referencedDocTitle) {
+	public int createShortcut(String docTitle, String shortcutTitle) {
 		Document document = this.documentController.getDocument(docTitle);
-		Document referencedDocument = this.documentController.getDocument(referencedDocTitle);
+		Document shortcutDoc = this.documentController.getDocument(shortcutTitle);
 		
 		if (this.documentController.isDocumentFull(docTitle)) {
 			throw new IllegalStateException("LIMITE DE ELEMENTOS ATINGIDO!");
@@ -107,12 +107,15 @@ public class ElementController {
 		if (document.isShortcut()) {
 			throw new IllegalStateException("ATALHO NÃO PODE TER ATALHO!");
 		}
-		if (this.documentHasShortcuts(referencedDocTitle)) {
+		if (this.documentHasShortcuts(shortcutTitle)) {
 			throw new IllegalStateException("DOCUMENTO QUE TEM ATALHOS NÂO PODE SER ATALHO!");
 		}
 		
-		Shortcut shortcut = new Shortcut(referencedDocument.getTitle(), 0);
-		referencedDocument.setIsShortcut(true);
+		Shortcut shortcut = new Shortcut(
+				shortcutDoc.getTitle(),
+				shortcutDoc.getTotalElementsSize()
+				);
+		shortcutDoc.setIsShortcut(true);
 		return document.createElement(shortcut);
 	}
 	

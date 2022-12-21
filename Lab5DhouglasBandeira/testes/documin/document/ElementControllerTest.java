@@ -1005,8 +1005,86 @@ class ElementControllerTest {
 		);
 	}
 	
-//	@Test
-//	void createShortcutTest() {
-//		
-//	}
+	@Test
+	void createShortcutTest() {
+		String msg = "Espera-se que um atalho seja criado em um documento.";
+		String docTitle = "Documento de teste";
+		String shortcutTitle = "Atalho teste";
+		int expectedResult = 0;
+		
+		this.documentController.createDocument(docTitle);
+		this.documentController.createDocument(shortcutTitle);
+		
+		int result = this
+				.elementController
+				.createShortcut(docTitle, shortcutTitle);
+		
+		assertEquals(expectedResult, result, msg);
+	}
+	
+	@Test
+	void createShortcutInFullDocumentTest() {
+		String msg = "Espera-se que ao criar um atalho em um documento "
+				+ "cheio de elementos, seja lançada a exceção "
+				+ "IllegalStateException.";
+		String docTitle = "Documento de teste";
+		String shortcutTitle = "Atalho de teste";
+		
+		this.documentController.createDocument(docTitle, 0);
+		this.documentController.createDocument(shortcutTitle);
+		
+		assertThrows(
+				IllegalStateException.class,
+				() -> this
+				.elementController
+				.createShortcut(docTitle, shortcutTitle),
+				msg
+				);
+	}
+	
+	@Test
+	void createShortcutInShortcutTest() {
+		String msg = "Espera-se que ao criar um atalho em um atalho "
+				+ ", seja lançada a exceção IllegalStateException.";
+		String docTitle = "Documento de teste";
+		String shortcutTitle = "Atalho de teste";
+		String shortcut2Title = "Atalho para inserir no atalho";
+		
+		this.documentController.createDocument(docTitle);
+		this.documentController.createDocument(shortcutTitle);
+		this.documentController.createDocument(shortcut2Title);
+		
+		this.elementController.createShortcut(docTitle, shortcutTitle);
+		
+		assertThrows(
+				IllegalStateException.class,
+				() -> this
+				.elementController
+				.createShortcut(shortcutTitle, shortcut2Title),
+				msg
+				);
+	}
+	
+	@Test
+	void createShortcutWithShortcuts() {
+		String msg = "Espera-se que ao criar um atalho, que contém "
+				+ "atalhos, seja lançada a exceção IllegalStateException.";
+		String docTitle = "Documento de teste";
+		String shortcutTitle = "Atalho de teste";
+		String shortcut2Title = "Atalho 2";
+		
+		this.documentController.createDocument(docTitle);
+		this.documentController.createDocument(shortcutTitle);
+		this.documentController.createDocument(shortcut2Title);
+		
+		this.elementController.createShortcut(shortcutTitle, shortcut2Title);
+		
+		assertThrows(
+				IllegalStateException.class,
+				() -> this
+				.elementController
+				.createShortcut(docTitle, shortcutTitle),
+				msg
+				);
+	}
 }

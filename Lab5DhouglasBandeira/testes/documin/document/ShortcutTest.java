@@ -11,7 +11,7 @@ class ShortcutTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		this.shortcut = new Shortcut("atalho de exemplo");
+		this.shortcut = new Shortcut("atalho de exemplo", -1);
 	}
 
 	@Test
@@ -256,30 +256,44 @@ class ShortcutTest {
 		assertFalse(result, msg);
 	}
 
-//	@Test
-//	void generateFullRepresentation() {
-//		String msg = "Espera-se que seja retornado a representação dos elementos acima de"
-//				+ " prioridade 4 do atalho.";
-//		String expectedFirstValue = "1. teste\n";
-//		String expectedSecondValue = "termos / de / exemplo\n";
-//		
-//		Shortcut newShortcut = new Shortcut("teste", 3);
-//		
-//		Title title = new Title("teste", 4, 3, false);
-//		Text text = new Text("testeeee", 1);
-//		Words words = new Words("termos / de / exemplo", 4, " / ", "NENHUM");
-//		
-//		newShortcut.createElement(title);
-//		newShortcut.createElement(text);
-//		newShortcut.createElement(words);
-//		
-//		String result = this.shortcut.generateFullRepresentation();
-//		
-//		assertTrue(result, msg);
-//	}
-//	
-//	@Test
-//	void generateShortRepresentation() {
-//		
-//	}
+	@Test
+	void generateFullRepresentation() {
+		String msg = "Espera-se que seja retornado a representação "
+				+ "dos elementos acima de prioridade 4 do atalho.";
+		String expectedValue = "3. teste\n"
+				+ "Total termos: 3\n"
+				+ "- termos, de, exemplo\n";
+		
+		Title title = new Title("teste", 4, 3, false);
+		Text text = new Text("testeeee", 1);
+		Words words = new Words("termos / de / exemplo", 4, " / ", "NENHUM");
+		
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
+		this.shortcut.createElement(words);
+		
+		String result = this.shortcut.generateFullRepresentation();
+		
+		assertEquals(expectedValue, result, msg);
+	}
+	
+	@Test
+	void generateShortRepresentation() {
+		String msg = "Espera-se que seja retornado a representação "
+				+ "dos elementos acima de prioridade 4 do atalho.";
+		String expectedValue = "3. teste\n"
+				+ "termos / de / exemplo\n";
+		
+		Title title = new Title("teste", 4, 3, false);
+		Text text = new Text("testeeee", 1);
+		Words words = new Words("termos / de / exemplo", 4, " / ", "NENHUM");
+		
+		this.shortcut.createElement(title);
+		this.shortcut.createElement(text);
+		this.shortcut.createElement(words);
+		
+		String result = this.shortcut.generateShortRepresentation();
+		
+		assertEquals(expectedValue, result, msg);
+	}
 }

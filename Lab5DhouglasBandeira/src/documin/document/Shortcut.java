@@ -9,13 +9,6 @@ public class Shortcut extends Element implements DocumentInterface {
 	
 	private ArrayList<Element> elements = new ArrayList<>();
 	
-	public Shortcut(String value) {
-		super(value, 0);
-		this.priority = this.getPriorityAverage();
-		this.elementsSize = -1;
-		this.elements = new ArrayList<Element>();
-	}
-	
 	public Shortcut(String value, int elementsSize) {
 		super(value, 0);
 		this.priority = this.getPriorityAverage();
@@ -96,8 +89,10 @@ public class Shortcut extends Element implements DocumentInterface {
 	
 	public String generateFullRepresentation() {
 		String result = "";
+		Element element;
 		
-		for (Element element: this.elements) {
+		for (int index = 0; index < this.countElements(); index++) {
+			element = this.elements.get(index);
 			if (element.getPriority() == 4 || element.getPriority() == 5) {				
 				result += element.generateFullRepresentation();
 			}
@@ -107,8 +102,10 @@ public class Shortcut extends Element implements DocumentInterface {
 	
 	public String generateShortRepresentation() {
 		String result = "";
+		Element element;
 		
-		for (Element element: this.elements) {
+		for (int index = 0; index < this.countElements(); index++) {
+			element = this.elements.get(index);
 			if (element.getPriority() == 4 || element.getPriority() == 5) {				
 				result += element.generateShortRepresentation();
 			}
