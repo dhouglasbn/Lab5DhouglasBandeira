@@ -708,7 +708,7 @@ class ElementControllerTest {
 	}
 	
 	@Test
-	void removeOverLasElementTest() {
+	void removeOverLastElementTest() {
 		String msg = "Espera-se que o elemento após o último elemento do "
 				+ "documento seja removido com sucesso.";
 		String docTitle = "Documento de teste";

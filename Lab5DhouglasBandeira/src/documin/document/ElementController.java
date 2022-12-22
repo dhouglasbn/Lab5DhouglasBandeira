@@ -119,34 +119,6 @@ public class ElementController {
 		return document.createElement(shortcut);
 	}
 	
-	private boolean isPriorityInRange(int priority) {
-		if (priority < 1 || priority > 5) {
-			return false;
-		}
-		return true;
-	}
-	
-	private boolean isLevelInRange(int level) {
-		if (level < 1 || level > 5) {
-			return false;
-		}
-		return true;
-	}
-	
-	private boolean documentHasShortcuts(String docTitle) {
-		Document document = this.documentController.getDocument(docTitle);
-		boolean hasShortcut = false;
-		
-		for (int index = 0; index < document.countElements(); index++) {
-			Element element = document.getElement(index);
-			if (element instanceof Shortcut) {
-				hasShortcut = true;
-				break;
-			}
-		}
-		return hasShortcut;
-	}
-	
 	public String getFullRepresentation(String docTitle, int elementPosition) {
 		Document document = this.documentController.getDocument(docTitle);
 		
@@ -201,5 +173,33 @@ public class ElementController {
 		Document document = this.documentController.getDocument(title);
 		
 		return document.countElements();
+	}
+	
+	private boolean isPriorityInRange(int priority) {
+		if (priority < 1 || priority > 5) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isLevelInRange(int level) {
+		if (level < 1 || level > 5) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean documentHasShortcuts(String docTitle) {
+		Document document = this.documentController.getDocument(docTitle);
+		boolean hasShortcut = false;
+		
+		for (int index = 0; index < document.countElements(); index++) {
+			Element element = document.getElement(index);
+			if (element instanceof Shortcut) {
+				hasShortcut = true;
+				break;
+			}
+		}
+		return hasShortcut;
 	}
 }
