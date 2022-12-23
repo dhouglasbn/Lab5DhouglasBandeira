@@ -1067,7 +1067,7 @@ class ElementControllerTest {
 	
 	@Test
 	void createShortcutWithShortcuts() {
-		String msg = "Espera-se que ao criar um atalho, que contém "
+		String msg = "Espera-se que ao criar um atalho que contém "
 				+ "atalhos, seja lançada a exceção IllegalStateException.";
 		String docTitle = "Documento de teste";
 		String shortcutTitle = "Atalho de teste";

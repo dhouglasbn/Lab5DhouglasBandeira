@@ -34,9 +34,7 @@ public class DocumentController {
 	}
 	
 	public void deleteDocument(String title) {
-		if (title.isBlank()) {
-			throw new IllegalArgumentException("TÍTULO NÃO PODE SER VAZIO");
-		}
+		this.getDocument(title);
 		
 		this.documentsMap.remove(title);
 	}

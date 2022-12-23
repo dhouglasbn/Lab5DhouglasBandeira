@@ -21,18 +21,35 @@ import documin.document.VisionController;
  */
 public class Facade {
 
+	/**
+	 * Controlador dos documentos
+	 */
 	private DocumentController documentController;
 
+	/**
+	 * Controllador dos elementos dos documentos
+	 */
 	private ElementController elementController;
 
+	/**
+	 * Controlador das visões
+	 */
 	private VisionController visionController;
 
+	/**
+	 * Constrói um Facade.
+	 */
 	public Facade() {
 		this.documentController = new DocumentController();
 		this.elementController = new ElementController(documentController);
 		this.visionController = new VisionController(documentController);
 	}
 
+	/** Cria um documento a partir de um título.
+	 * 
+	 * @param title
+	 * @return document position
+	 */
 	public boolean createDocument(String title) {
 		boolean result = false;
 		try {
@@ -44,6 +61,12 @@ public class Facade {
 		return result;
 	}
 
+	/** Cria um documento a partir de um título e limite de elementos.
+	 * 
+	 * @param title
+	 * @param elementsSize
+	 * @return document position
+	 */
 	public boolean createDocument(String title, int elementsSize) {
 		boolean result = false;
 		try {
@@ -55,6 +78,10 @@ public class Facade {
 		return result;
 	}
 
+	/** Deleta um documento.
+	 * 
+	 * @param titulo
+	 */
 	public void deleteDocument(String titulo) {
 		try {
 			this.documentController.deleteDocument(titulo);
@@ -63,6 +90,11 @@ public class Facade {
 		}
 	}
 
+	/** Conta os elementos de um documento.
+	 * 
+	 * @param titulo
+	 * @return elements number
+	 */
 	public int countElements(String titulo) {
 		int elementsNumber = 0;
 		try {
@@ -73,6 +105,11 @@ public class Facade {
 		return elementsNumber;
 	}
 
+	/** Exibe os elementos de um documento.
+	 * 
+	 * @param title
+	 * @return document elements
+	 */
 	public String[] showDocument(String title) {
 		String[] documentElements = new String[0];
 
@@ -85,6 +122,13 @@ public class Facade {
 		return documentElements;
 	}
 
+	/** Cria um texto no documento.
+	 * 
+	 * @param docTitle
+	 * @param value
+	 * @param priority
+	 * @return element position
+	 */
 	public int createText(String docTitle, String value, int priority) {
 		int index = -1;
 
@@ -96,6 +140,15 @@ public class Facade {
 		return index;
 	}
 
+	/** Cria um título no documento.
+	 * 
+	 * @param docTitle
+	 * @param value
+	 * @param priority
+	 * @param nivel
+	 * @param linkavel
+	 * @return element position
+	 */
 	public int createTitle(
 			String docTitle,
 			String value,
@@ -115,6 +168,15 @@ public class Facade {
 		return index;
 	}
 
+	/** Cria uma lista no documento.
+	 * 
+	 * @param docTitle
+	 * @param listValue
+	 * @param priority
+	 * @param spacer
+	 * @param charList
+	 * @return element position
+	 */
 	public int createList(
 			String docTitle,
 			String listValue,
@@ -138,6 +200,15 @@ public class Facade {
 		return index;
 	}
 
+	/** Cria termos no documento.
+	 * 
+	 * @param docTitle
+	 * @param wordsValue
+	 * @param priority
+	 * @param spacer
+	 * @param rank
+	 * @return element position
+	 */
 	public int createWords(
 			String docTitle,
 			String wordsValue,
@@ -157,6 +228,12 @@ public class Facade {
 		return index;
 	}
 
+	/** Pega a representação completa de um elemento do documento.
+	 * 
+	 * @param docTitle
+	 * @param elementPosition
+	 * @return full representation
+	 */
 	public String getFullRepresentation(String docTitle, int elementPosition) {
 		String representation = "";
 
@@ -170,6 +247,12 @@ public class Facade {
 		return representation;
 	}
 
+	/** Pega a representação resumida de um elemento no documento.
+	 * 
+	 * @param docTitle
+	 * @param elementPosition
+	 * @return short representation
+	 */
 	public String getShortRepresentation(String docTitle, int elementPosition) {
 		String representation = "";
 
@@ -183,6 +266,12 @@ public class Facade {
 		return representation;
 	}
 
+	/** Remove um elemento no documento.
+	 * 
+	 * @param docTitle
+	 * @param elementPosition
+	 * @return operetion status
+	 */
 	public boolean removeElement(String docTitle, int elementPosition) {
 		boolean result = false;
 
@@ -194,6 +283,11 @@ public class Facade {
 		return result;
 	}
 
+	/** Move um elemento para cima no documento.
+	 * 
+	 * @param docTitle
+	 * @param elementPosition
+	 */
 	public void moveElementUp(String docTitle, int elementPosition) {
 		try {
 			this.elementController.moveElementUp(docTitle, elementPosition);
@@ -202,6 +296,11 @@ public class Facade {
 		}
 	}
 
+	/** Move um elemento para baixo no documento.
+	 * 
+	 * @param docTitle
+	 * @param elementPosition
+	 */
 	public void moveElementDown(String docTitle, int elementPosition) {
 		try {
 			this.elementController.moveElementDown(docTitle, elementPosition);
@@ -210,6 +309,11 @@ public class Facade {
 		}
 	}
 
+	/** Cria uma visão completa do documento.
+	 * 
+	 * @param docTitle
+	 * @return vision index
+	 */
 	public int createFullVision(String docTitle) {
 		int result = -1;
 
@@ -221,6 +325,11 @@ public class Facade {
 		return result;
 	}
 
+	/** Cria uma visão resumida do documento.
+	 * 
+	 * @param docTitle
+	 * @return vision index
+	 */
 	public int createShortVision(String docTitle) {
 		int result = -1;
 
@@ -232,6 +341,12 @@ public class Facade {
 		return result;
 	}
 
+	/** Cria uma visão de prioridade do documento.
+	 * 
+	 * @param docTitle
+	 * @param priority
+	 * @return vision index
+	 */
 	public int createPriorityVision(String docTitle, int priority) {
 		int result = -1;
 
@@ -243,6 +358,11 @@ public class Facade {
 		return result;
 	}
 
+	/** Cria uma visão de títulos do documento.
+	 * 
+	 * @param docTitle
+	 * @return vision index
+	 */
 	public int createTitleVision(String docTitle) {
 		int result = -1;
 
@@ -254,6 +374,11 @@ public class Facade {
 		return result;
 	}
 
+	/** Exibe a visão do documento.
+	 * 
+	 * @param visionId
+	 * @return document elements representations
+	 */
 	public String[] showVision(int visionId) {
 		String[] result = new String[0];
 

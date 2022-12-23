@@ -266,7 +266,7 @@ class ShortcutTest {
 		
 		Title title = new Title("teste", 4, 3, false);
 		Text text = new Text("testeeee", 1);
-		Words words = new Words("termos / de / exemplo", 4, " / ", "NENHUM");
+		Words words = new Words("termos / de / exemplo", 5, " / ", "NENHUM");
 		
 		this.shortcut.createElement(title);
 		this.shortcut.createElement(text);
@@ -286,7 +286,7 @@ class ShortcutTest {
 		
 		Title title = new Title("teste", 4, 3, false);
 		Text text = new Text("testeeee", 1);
-		Words words = new Words("termos / de / exemplo", 4, " / ", "NENHUM");
+		Words words = new Words("termos / de / exemplo", 5, " / ", "NENHUM");
 		
 		this.shortcut.createElement(title);
 		this.shortcut.createElement(text);
