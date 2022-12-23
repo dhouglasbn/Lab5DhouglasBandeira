@@ -5,6 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/** Representação de um test case do controlador
+ *  das visões.
+ *  
+ * @author Dhouglas Bandeira
+ *
+ */
 class VisionControllerTest {
 	
 	private DocumentController documentController;

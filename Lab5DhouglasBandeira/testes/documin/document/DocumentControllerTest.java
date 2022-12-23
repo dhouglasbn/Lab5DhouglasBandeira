@@ -7,6 +7,12 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/** Representação de um test case do controlador
+ *  dos documentos.
+ *  
+ * @author Dhouglas Bandeira
+ *
+ */
 class DocumentControllerTest {
 
 	private DocumentController documentController;

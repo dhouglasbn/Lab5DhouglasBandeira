@@ -5,6 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/** Representação de um test case das visões dee
+ *  prioridade.
+ *  
+ * @author Dhouglas Bandeira
+ *
+ */
 class PriorityVisionTest {
 
 	private PriorityVision priorityVision;

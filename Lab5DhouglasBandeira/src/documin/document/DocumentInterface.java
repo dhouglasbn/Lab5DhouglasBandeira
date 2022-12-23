@@ -1,5 +1,10 @@
 package documin.document;
 
+/** interface dos documentos.
+ * 
+ * @author Dhouglas Bandeira
+ *
+ */
 public interface DocumentInterface {
 	public String getTitle();
 	

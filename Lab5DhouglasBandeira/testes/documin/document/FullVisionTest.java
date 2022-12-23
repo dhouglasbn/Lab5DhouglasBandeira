@@ -4,6 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/** Representação de um test case das visões
+ *  completas.
+ *  
+ * @author Dhouglas Bandeira
+ *
+ */
 class FullVisionTest {
 
 	private FullVision fullVision;

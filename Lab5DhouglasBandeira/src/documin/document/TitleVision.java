@@ -1,7 +1,16 @@
 package documin.document;
 
+/** Representação de uma visão de títulos.
+ * 
+ * @author Dhouglas Bandeira
+ *
+ */
 public class TitleVision extends Vision {
 
+	/** Constrói uma visão de títulos.
+	 * 
+	 * @param document
+	 */
 	public TitleVision(Document document) {
 		super(document);
 	}
@@ -21,6 +30,10 @@ public class TitleVision extends Vision {
 		return result;
 	}
 	
+	/** Conta quantos elementos são títulos no documento.
+	 * 
+	 * @return title elements number
+	 */
 	private int countTitleElements() {
 		int result = 0;
 		

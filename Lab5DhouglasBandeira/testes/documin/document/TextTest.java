@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/** Representação de um test case dos textos.
+ *  
+ * @author Dhouglas Bandeira
+ *
+ */
 class TextTest {
 	
 	private Text text;

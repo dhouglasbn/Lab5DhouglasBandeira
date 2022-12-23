@@ -4,18 +4,37 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/** Representação do elemento de termos.
+ * 
+ * @author Dhouglas Bandeira
+ *
+ */
 public class Words extends Element {
 	
+	/**
+	 * espaçador do valor do elemento
+	 */
 	private String spacer;
 	
+	/**
+	 * ordem dos termos
+	 */
 	private String rank;
 
+	/** Constrói o elemento de termos.
+	 * 
+	 * @param value
+	 * @param priority
+	 * @param spacer
+	 * @param rank
+	 */
 	public Words(String value, int priority, String spacer, String rank) {
 		super(value, priority);
 		this.spacer = spacer;
 		this.rank = rank;
 	}
 	
+	@Override
 	public String generateFullRepresentation() {
 		String[] words = this.getSortedWords();
 		String representation = "Total termos: " + words.length + "\n- ";
@@ -29,6 +48,7 @@ public class Words extends Element {
 		return representation;
 	}
 	
+	@Override
 	public String generateShortRepresentation() {
 		String [] words = this.getSortedWords();
 		String representation = "";
@@ -42,6 +62,10 @@ public class Words extends Element {
 		return representation;
 	}
 	
+	/** Retorna uma lista ordenada dos termos pelo rank.
+	 * 
+	 * @return sorted words array
+	 */
 	private String[] getSortedWords() {
 		String[] words = this.getWordsArray();
 		
@@ -57,6 +81,10 @@ public class Words extends Element {
 		return words;
 	}
 	
+	/** Retorna um array das palavras do valor do elemento.
+	 * 
+	 * @return words array
+	 */
 	private String[] getWordsArray() {
 		String[] array = this.value.split(this.spacer);
 		ArrayList<String> result = new ArrayList<>();

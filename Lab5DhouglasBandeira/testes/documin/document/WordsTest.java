@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+/** Representação de um test case dos termos.
+ *  
+ * @author Dhouglas Bandeira
+ *
+ */
 class WordsTest {
 	
 	private Words words;

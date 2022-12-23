@@ -1,14 +1,31 @@
 package documin.document;
 
+/** Representação de uma visão de prioridade.
+ * 
+ * @author Dhouglas Bandeira
+ *
+ */
 public class PriorityVision extends Vision {
 	
+	/**
+	 * Prioridade da visão
+	 */
 	private int priority;
 
+	/** Constrói uma visão de prioridade.
+	 * 
+	 * @param document
+	 * @param priority
+	 */
 	public PriorityVision(Document document, int priority) {
 		super(document);
 		this.priority = priority;
 	}
 	
+	/** Pega prioridade da visão.
+	 * 
+	 * @return priority
+	 */
 	public int getPriority() {
 		return this.priority;
 	}
@@ -28,6 +45,10 @@ public class PriorityVision extends Vision {
 		return result;
 	}
 	
+	/** Conta quantos elementos do documento possuem prioridade
+	 * igual ou acima da prioridade da visão.
+	 * @return
+	 */
 	private int countPriorityElements() {
 		int result = 0;
 		

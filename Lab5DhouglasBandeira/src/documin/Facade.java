@@ -4,15 +4,6 @@ import documin.document.DocumentController;
 import documin.document.ElementController;
 import documin.document.VisionController;
 
-/** IMPORTANTE **
- * DocumentController ta cheio de responsabilidades
- * deixo document controller gerenciado elementos mesmo?
- * ou devo criar um elementController que é instanciado dentro
- * de documentController, onde documentController só vai ser
- * responsável por realizar a regra de negócio de documento
- * e pedir pro elementController
- */
-
 /**
  * Facade representa um ponto de entrada para as demais classes do sistema.
  * 
@@ -101,6 +92,7 @@ public class Facade {
 			elementsNumber = this.elementController.getElementsNumber(titulo);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return elementsNumber;
 		}
 		return elementsNumber;
 	}
@@ -117,6 +109,7 @@ public class Facade {
 			documentElements = this.documentController.showDocument(title);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return documentElements;
 		}
 
 		return documentElements;
@@ -136,6 +129,7 @@ public class Facade {
 			index = this.elementController.createText(docTitle, value, priority);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return index;
 		}
 		return index;
 	}
@@ -164,6 +158,7 @@ public class Facade {
 					.createTitle(docTitle, value, priority, nivel, linkavel);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return index;
 		}
 		return index;
 	}
@@ -196,6 +191,7 @@ public class Facade {
 			);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return index;
 		}
 		return index;
 	}
@@ -224,6 +220,7 @@ public class Facade {
 					.createWords(docTitle, wordsValue, priority, spacer, rank);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return index;
 		}
 		return index;
 	}
@@ -243,6 +240,7 @@ public class Facade {
 					.getFullRepresentation(docTitle, elementPosition);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return representation;
 		}
 		return representation;
 	}
@@ -262,6 +260,7 @@ public class Facade {
 					.getShortRepresentation(docTitle, elementPosition);
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			return representation;
 		}
 		return representation;
 	}
